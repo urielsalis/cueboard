@@ -1,0 +1,31 @@
+{
+  "name": "controlboard",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint app/",
+    "format": "prettier --write 'app/**/*.{ts,tsx,css}' '*.{json,ts,mjs}'",
+    "format:check": "prettier --check 'app/**/*.{ts,tsx,css}' '*.{json,ts,mjs}'",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "dependencies": {
+    "next": "16.2.6",
+    "react": "19.2.6",
+    "react-dom": "19.2.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "eslint": "^9.39.4",
+    "eslint-config-next": "^16.2.6",
+    "eslint-config-prettier": "^10.1.8",
+    "prettier": "^3.8.3",
+    "typescript": "^6",
+    "vitest": "^4.1.7"
+  }
+}
