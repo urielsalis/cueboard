@@ -35,8 +35,14 @@ export default function CallbackPage() {
 
     exchangeCode(code, state)
       .then((data) => {
-        const target = data.localhostUrl ? `${data.localhostUrl}/callback` : "";
-        window.location.href = `${target}#token=${encodeURIComponent(data.refreshToken)}`;
+        if (data.localhostUrl) {
+          // Dev only: hand off token from 127.0.0.1 to localhost via hash
+          window.location.href = `${data.localhostUrl}/callback#token=${encodeURIComponent(data.refreshToken)}`;
+        } else {
+          // Production: save token directly and go home
+          localStorage.setItem("cb_spotify_refresh", data.refreshToken);
+          window.location.href = home;
+        }
       })
       .catch((err) => {
         alert("Spotify login failed: " + err.message);
