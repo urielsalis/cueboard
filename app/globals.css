@@ -7,7 +7,13 @@
 html,
 body {
   height: 100%;
-  overflow: hidden;
+}
+
+@media (min-width: 641px) {
+  html,
+  body {
+    overflow: hidden;
+  }
 }
 
 body {
@@ -793,4 +799,56 @@ a {
   text-align: center;
   padding: 24px;
   opacity: 0.4;
+}
+
+/* ---------- Mobile ---------- */
+
+@media (max-width: 640px) {
+  .cb {
+    flex-direction: column;
+    height: auto;
+    min-height: 100vh;
+  }
+
+  .cb__left {
+    border-right: none;
+    border-bottom: 1px solid #333;
+  }
+
+  .cb__cue-scroll {
+    max-height: 50vh;
+  }
+
+  .cb__right {
+    width: 100%;
+  }
+
+  .cb__now-playing {
+    padding: 16px;
+  }
+
+  .cb__np-countdown {
+    font-size: 40px;
+  }
+
+  .cb__setup-card {
+    padding: 24px;
+  }
+
+  .cue-form {
+    width: 100%;
+    max-width: 100vw;
+    border-radius: 0;
+    max-height: 100vh;
+  }
+
+  .cue-form-overlay {
+    align-items: flex-end;
+  }
+
+  .cb__bg-playlist-header {
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+  }
 }
