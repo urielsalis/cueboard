@@ -3,14 +3,23 @@
 import { useEffect } from "react";
 import { exchangeCode } from "../spotify-auth";
 
+function getBasePath(): string {
+  const path = window.location.pathname;
+  const callbackIdx = path.indexOf("/callback");
+  return callbackIdx > 0 ? path.slice(0, callbackIdx) : "";
+}
+
 export default function CallbackPage() {
   useEffect(() => {
+    const basePath = getBasePath();
+    const home = basePath + "/";
+
     // Step 2: arriving on localhost with refresh token in hash — save and go home
     const hash = window.location.hash;
     if (hash.startsWith("#token=")) {
       const rt = decodeURIComponent(hash.slice("#token=".length));
       localStorage.setItem("cb_spotify_refresh", rt);
-      window.location.href = "/";
+      window.location.href = home;
       return;
     }
 
@@ -20,7 +29,7 @@ export default function CallbackPage() {
     const state = params.get("state");
 
     if (!code || !state) {
-      window.location.href = "/";
+      window.location.href = home;
       return;
     }
 
@@ -31,7 +40,7 @@ export default function CallbackPage() {
       })
       .catch((err) => {
         alert("Spotify login failed: " + err.message);
-        window.location.href = "/";
+        window.location.href = home;
       });
   }, []);
 

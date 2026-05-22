@@ -5,11 +5,12 @@ import { useSyncExternalStore } from "react";
 const subscribe = () => () => {};
 
 function getRedirectUri(): string {
-  const origin =
-    window.location.hostname === "localhost"
-      ? `http://127.0.0.1:${window.location.port}`
-      : window.location.origin;
-  return origin + "/callback";
+  if (window.location.hostname === "localhost") {
+    return `http://127.0.0.1:${window.location.port}/callback`;
+  }
+  const { origin, pathname } = window.location;
+  const base = pathname.replace(/\/+$/, "");
+  return origin + base + "/callback";
 }
 
 export function SetupInstructions() {
